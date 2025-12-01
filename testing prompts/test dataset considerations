@@ -1,0 +1,6 @@
+-specific domain --> scientific
+-most datasets use short questions, not suited for squai as scientific qa tool also do not adress the question splitting mechanism of squai
+-currently restricted to text in the papers
+
+graph questions:
+https://sites.cs.ucsb.edu/~xyan/papers/emnlp16_graphquestions.pdf?utm_source=chatgpt.com
