@@ -1,0 +1,8 @@
+Modern compilers optimize memory access patterns to reduce cache misses by employing various 
+techniques such as loop unrolling, loop tiling, and data prefetching. These techniques aim to improve spatial 
+and temporal locality, thereby reducing the number of cache misses. Loop unrolling reduces the overhead of loop control 
+and increases the number of operations performed per cache line, improving spatial locality. Loop tiling divides 
+large data structures into smaller blocks that fit into the cache, improving temporal locality. Data prefetching 
+involves predicting future memory accesses and loading data into the cache before it is actually needed, reducing the 
+latency associated with cache misses. These optimizations are crucial for improving the performance of memory-bound 
+applications on modern processors. [1,3]
