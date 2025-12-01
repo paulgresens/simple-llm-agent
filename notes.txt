@@ -1,0 +1,27 @@
+used model: https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2
+
+not really quoting since clean_for_citation_matching strips sentences away
+abbreviations like i. e. ends sentences --> this gets apprubtly cut
+
+cross encoder: sentence + claim (how good match)
+my version: sentence + paper (best fitting passage)
+-->test which works better and take maybe both or the better one?
+-->cross encoder to inefficient, maybe use a small bi transformer before that?
+
+context extraction variants:
+native
+sentence + whole paper
+bi transformer
+bi transformer + cross encoder for top 10 sentences
+hybrid search (dense + sparse)
+(hybrid search + LLM for the top 10?)
+
+-->judge all and benchmark over dataset
+
+
+python run_SQuAI.py --model meta-llama/Llama-3.1-8B-Instruct --n 0.5 --alpha 0.65 --top_k 20 --single_question "What is machine learning?"
+
+https://api.semanticscholar.org/api-docs/#tag/Paper-Data/operation/get_graph_get_paper
+WITH DB FROM FAISS INDEX:
+sqlite3 -csv your_database.db "SELECT value FROM meta_document WHERE name = 'paper_id';" > all_paper_ids.txt
+srun --pty   --nodes=1   --ntasks=1   --cpus-per-task=8   --mem=40G   --gres=gpu:1   --time=02:00:00   --partition=capella   bash

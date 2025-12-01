@@ -1,0 +1,5 @@
+.env
+node_modules
+datasetGeneration/final1000.jsonl
+datasetGeneration/final_all_select1000.json
+datasetGeneration/processedFinal1000.jsonl 
