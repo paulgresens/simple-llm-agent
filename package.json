@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "pdf-parse": "^1.1.1",
+    "stream-json": "^1.9.1",
+    "undici": "^7.19.1"
+  },
+  "scripts": {
+    "stats": "clear && node datasetGeneration/countMultihop.js"
+  }
+}

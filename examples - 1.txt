@@ -1,0 +1,454 @@
+How do modern compilers optimize memory access patterns to reduce cache misses?
+----------
+claim: Modern compilers optimize memory access patterns to reduce cache misses through various techniques, including cache prefetching and data layout optimizations .
+context: Modern processors use cache memory: a memory access that 'hits' the cache returns early, while a “miss” takes more time. 
+Given a memory access in a program, cache analysis consists in deciding whether this access is always a hit, always a miss, or is a hit or a miss depending on execution. 
+Such an analysis is of high importance for bounding the worst-case execution time of safety-critical real-time programs.
+llmJudgement: 
+{
+    "faithfulness": {  
+        "rating": 2,  
+        "justification":  "The context discusses cache memory and its importance in reducing execution time, but it does not specifically mention techniques like cache prefetching or data layout optimizations."
+    },
+    "relevance": {  
+        "rating": 2,  
+        "justification": "The context is relevant to the topic of cache memory and its impact on performance, but it does not directly address the specific optimization techniques mentioned in the claim."
+    },
+    "consistency": {  
+        "rating": 3,  
+        "justification": "The claim does not contradict the information in the context; both discuss cache memory and its importance in optimizing performance."
+    },
+    "supportCoverage": {  
+        "rating": 1,  
+        "justification": "The context does not provide information about specific optimization techniques such as cache prefetching or data layout optimizations."
+        },
+    "paraphraseRobustness": {  
+        "rating": 3,  
+        "justification": "The claim and context both discuss cache memory and its role in optimizing performance, conveying the same semantic meaning."
+    },
+    "ambiguityLevel": {  
+        "rating": 3,  
+        "justification": "The context is not ambiguous with respect to the claim; both focus on cache memory and its importance in performance optimization."
+        },
+    "meanScore": 2.2
+    }"
+----------
+
+claim: Cache prefetching involves predicting future memory accesses and fetching data into the cache before it is actually required by the processor, thereby reducing cache misses.
+context: Cache prefetcher greatly eliminates compulsory cache misses, by fetching data from slower memory to faster cache before it is actually required by processors. 
+Sophisticated prefetchers predict next use cache line by repeating program’s historical spatial and temporal memory access pattern. 
+However, they are error prone and the mis-predictions lead to cache pollution and exert extra pressure on memory subsystem
+{
+  "faithfulness": {
+    "rating": 3,
+    "justification": "The claim accurately reflects the information provided in the context about cache prefetching, including the prediction of future memory accesses and the reduction of cache misses."
+  },
+  "relevance": {
+    "rating": 3,
+    "justification": "The context directly discusses cache prefetching, its purpose, and how it works, which are all relevant to the claim."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict any information in the context; instead, it aligns with the explanation of how cache prefetching operates."
+  },
+  "supportCoverage": {
+    "rating": 3,
+    "justification": "The context provides sufficient information to justify the claim, explaining the mechanism of cache prefetching and its benefits."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and the context convey the same meaning, discussing the prediction of future memory accesses and the role of prefetching in reducing cache misses."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context is clear and unambiguous regarding the explanation of cache prefetching, aligning with the claim without room for alternative interpretations."
+  },
+  "meanScore": 3
+}
+----------
+claim: Data layout optimizations, such as padding and alignment, are used to mitigate aliasing conflicts and improve cache utilization.
+context: Although such effects are well known in the form of cache thrashing and aliasing conflicts, they become more severe when memory access is involved. Using the new Sun UltraSPARC T2 
+processor as a prototypical multi-core design, we analyze performance patterns in low-level and application benchmarks and show ways to circumvent bottlenecks by careful data layout and padding. 
+1 The Sun UltraSPARC T2 processor Trading high single core performance for a highly parallel single chip architecture is the basic idea of T2 as can be seen in Fig.
+{
+  "faithfulness": {
+    "rating": 2,
+    "justification": "The claim is partly supported by the context, which mentions data layout and padding but does not explicitly state that these optimizations mitigate aliasing conflicts and improve cache utilization."
+  },
+  "relevance": {
+    "rating": 3,
+    "justification": "The context discusses data layout and padding, which are directly related to the claim about mitigating aliasing conflicts and improving cache utilization."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict the information in the context; both discuss data layout and padding in the context of performance optimization."
+  },
+  "supportCoverage": {
+    "rating": 2,
+    "justification": "While the context mentions data layout and padding, it does not provide explicit support for the claim that these optimizations mitigate aliasing conflicts and improve cache utilization."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context convey the same semantic meaning, focusing on data layout and padding for performance optimization."
+  },
+  "ambiguityLevel": {
+    "rating": 2,
+    "justification": "The context is somewhat ambiguous regarding the specific benefits of data layout and padding, such as mitigating aliasing conflicts and improving cache utilization."
+  },
+  "meanScore": 2.5
+}
+----------
+How does homomorphic encryption enable computation on encrypted data?
+
+claim: 
+    Homomorphic encryption enables computation on encrypted data by allowing operations to be performed on the ciphertexts such that, after decryption, the result is the same as if the operations had been performed 
+    on the plaintexts directly.
+context: Homomorphic encryption is an encryption method that enables computing over encrypted data. This has a wide range of real world ramifications such as being able to blindly compute a search result sent to a remote server 
+without revealing its content. This paper discusses how database search queries can be made secure using a homomorphic encryption scheme.
+{
+  "faithfulness": {
+    "rating": 3,
+    "justification": "The claim accurately reflects the core concept of homomorphic encryption as described in the context, which is the ability to perform computations on encrypted data."
+  },
+  "relevance": {
+    "rating": 3,
+    "justification": "The context directly discusses homomorphic encryption and its application to secure computations, which is precisely what the claim addresses."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict any information provided in the context; rather, it aligns with the description of homomorphic encryption's capabilities."
+  },
+  "supportCoverage": {
+    "rating": 3,
+    "justification": "The context provides a clear explanation of homomorphic encryption's function, which fully supports the claim."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context convey the same semantic meaning, discussing the ability to compute on encrypted data without decryption."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context is clear and unambiguous about the nature of homomorphic encryption, which matches the claim's interpretation."
+  },
+  "meanScore": 3
+}
+----------
+claim: This property is achieved through the design of encryption schemes that support homomorphic operations, such as addition and multiplication, on the encrypted data.
+context:  Here we show, via an information localisation argument, that deterministic fully homomorphic encryption necessarily incurs exponential overhead if perfect security is required. 
+The insight that information must be represented and manipulated in accordance with physical laws has led to the blossoming field of quantum information science. 
+The applications of this approach to information processing are diverse, and it has led to discoveries ranging from new algorithms and communications protocols which exploit quantum states for increased 
+efficiency to techniques for enhancing the precision of metrology.
+{
+  "faithfulness": {
+    "rating": 1,
+    "justification": "The claim specifically refers to encryption schemes supporting homomorphic operations, which is not discussed in the context."
+  },
+  "relevance": {
+    "rating": 1,
+    "justification": "The context discusses fully homomorphic encryption and its implications, but does not directly relate to the design of encryption schemes supporting specific operations."
+  },
+  "consistency": {
+    "rating": 1,
+    "justification": "The context does not provide information that contradicts the claim, but it also does not support it."
+  },
+  "supportCoverage": {
+    "rating": 1,
+    "justification": "The context does not provide sufficient information to justify the claim about the design of encryption schemes."
+  },
+  "paraphraseRobustness": {
+    "rating": 1,
+    "justification": "The claim and context discuss different aspects of homomorphic encryption, making their semantic meanings distinct."
+  },
+  "ambiguityLevel": {
+    "rating": 1,
+    "justification": "The context does not provide clear information that could be interpreted differently from the claim."
+  },
+  "meanScore": 1.0
+}
+
+----------
+claim: These schemes have been shown to have significant implications for privacy-preserving applications, such as secure machine learning inference.
+context: Modern deep learning applications yield good performance for example in image processing tasks benchmarks by including many skip connections. 
+The latter appears to be very costly when attempting to execute model inference under HE. In this paper, we show that by replacing (mid-term) skip connections with (short-term) Dirac parameterization and (long-term) shared-source skip 
+connection we were able to reduce the skip connections burden for HE-based solutions, achieving ×1.
+{
+  "faithfulness": {
+    "rating": 1,
+    "justification": "The claim about privacy-preserving applications and secure machine learning inference is not supported by the context, which focuses on optimizing deep learning models for homomorphic encryption."
+  },
+  "relevance": {
+    "rating": 1,
+    "justification": "The context discusses optimizing deep learning models for homomorphic encryption, which is not directly related to privacy-preserving applications or secure machine learning inference."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict the information in the context, as both discuss different aspects of deep learning and encryption."
+  },
+  "supportCoverage": {
+    "rating": 1,
+    "justification": "The context does not provide any information about privacy-preserving applications or secure machine learning inference."
+  },
+  "paraphraseRobustness": {
+    "rating": 1,
+    "justification": "The claim and context discuss different topics, so their semantic meanings do not align."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context is clear and unambiguous regarding the focus on optimizing deep learning models for homomorphic encryption."
+  },
+  "meanScore": 1.6
+}
+
+
+How do microservice architectures reduce coupling compared to monolithic systems, and what trade-offs do they introduce in operational complexity?
+----------
+claim: Microservice architectures (MA) reduce coupling compared to monolithic systems by decomposing applications into smaller, loosely coupled services.
+context: However, little empirical evidence exists on design, monitoring, and testing of microservices systems. Objective: This research aims to gain a deep understanding of how microservices systems are designed, 
+      monitored, and tested in the industry. Method: A mixed-methods study was conducted with 106 survey responses and 6 interviews from microservices practitioners.
+llmJudgement: 
+{
+  "faithfulness": {
+    "rating": 1,
+    "justification": "The claim about microservice architectures reducing coupling is not supported by the context, which focuses on the lack of empirical evidence and a study's objective to understand design, monitoring, and testing practices."
+  },
+  "relevance": {
+    "rating": 1,
+    "justification": "The context discusses the lack of empirical evidence and a study's objective, which are unrelated to the claim about microservice architectures and coupling."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict the context, as both discuss different aspects of microservice architectures without conflicting information."
+  },
+  "supportCoverage": {
+    "rating": 1,
+    "justification": "The context does not provide any information about coupling or the benefits of microservice architectures, which are central to the claim."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context discuss different aspects of microservice architectures, but the semantic meaning of the claim is preserved despite the different focus of the context."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context is not ambiguous with respect to the claim, as it does not provide information that could be interpreted differently regarding coupling in microservice architectures."
+  },
+  "meanScore": 1.83
+}
+
+----------
+claim: Each microservice is designed to perform a specific business function, which minimizes dependencies between services and allows them to be developed, deployed, and scaled independently.
+context: We also devise an algorithm to reduce the number of APIs. For this, we construct subgraphs of methods and their associated variables in each class and relocate them to their more functionally 
+aligned microservices. Our quantitative and qualitative studies on five public Java applications clearly demonstrate that our refactored microservices using ID have decidedly 
+better time and memory complexities than JSON.
+llmJudgement: 
+{
+  "faithfulness": {
+    "rating": 2,
+    "justification": "The context discusses the design and optimization of microservices, but it does not explicitly state that each microservice is designed for a specific business function. The claim is partly supported by the context, but lacks direct evidence."
+  },
+  "relevance": {
+    "rating": 3,
+    "justification": "The context and claim both revolve around the design and optimization of microservices, making them highly relevant to each other."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict any information provided in the context; both discuss the benefits of well-designed microservices."
+  },
+  "supportCoverage": {
+    "rating": 2,
+    "justification": "While the context provides information about the optimization of microservices, it does not fully cover the specific claim about each microservice being designed for a specific business function."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context convey the same semantic meaning regarding the design and optimization of microservices, despite different wording."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context does not provide ambiguous information that could lead to a different interpretation than the claim."
+  },
+  "meanScore": 2.5
+}
+
+What strategies ensure zero-downtime deployments in distributed applications with stateful components?
+----------
+claim: A novel approach for robotic system monitoring and stateful, reactive failure mitigation for distributed robotic systems deployed using Kubernetes (K8s) and ROS2 is proposed.
+context: In cloud-native applications deployed with the container management system Kubernetes (K8s), one key problem is ensuring resilience against various types of failures. 
+However, complex robotic systems interacting with the physical world pose a very specific set of challenges and requirements that are not yet covered by failure mitigation approaches from the cloud-native domain. 
+In this paper, we therefore propose a novel approach for robotic system monitoring and stateful, reactive failure mitiga...
+llmJudgement: 
+{
+  "faithfulness": {
+    "rating": 3,
+    "justification": "The claim directly reflects the content of the context, stating that a novel approach for robotic system monitoring and failure mitigation is proposed, which is supported by the context."
+  },
+  "relevance": {
+    "rating": 3,
+    "justification": "The context discusses the challenges of failure mitigation in robotic systems and the need for a novel approach, which is directly relevant to the claim."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict any information in the context; it aligns with the proposed novel approach mentioned."
+  },
+  "supportCoverage": {
+    "rating": 3,
+    "justification": "The context provides sufficient information to justify the claim by detailing the problem and the proposed solution."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context convey the same meaning, discussing a novel approach for robotic system monitoring and failure mitigation."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context is clear and unambiguous regarding the proposed novel approach for robotic system monitoring and failure mitigation."
+  },
+  "meanScore": 3
+}
+
+----------
+claim: The application of age of information (AoI) helps maintain network status information at an acceptable freshness level for appropriate decision-making, contributing to zero-downtime deployments.
+context: In addition, to train and test our DRL agents, we propose a novel impending-failure model. Moreover, to keep network status information at an acceptable freshness level for appropriate decision-making, 
+we apply the concept of age of information to strike a balance between the event and scheduling based monitoring. Several key systems and DRL algorithm design insights for ZT-PFR are drawn from our analysis and simulation results.
+llmJudgement: 
+{
+  "faithfulness": {
+    "rating": 2,
+    "justification": "The claim is partly based on the context, as the context mentions the application of AoI for maintaining network status information freshness, but it does not explicitly state that this contributes to zero-downtime deployments."
+  },
+  "relevance": {
+    "rating": 3,
+    "justification": "The context and claim both discuss the application of AoI in maintaining network status information freshness, which are thematically aligned."
+  },
+  "consistency": {
+    "rating": 2,
+    "justification": "The claim is consistent with the context in terms of using AoI for network status freshness, but the zero-downtime aspect is not directly supported by the context."
+  },
+  "supportCoverage": {
+    "rating": 2,
+    "justification": "The context provides some support for the claim by mentioning AoI's role in freshness, but it does not fully cover the claim's assertion about zero-downtime deployments."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context convey the same semantic meaning regarding the use of AoI for network status freshness, despite different wording."
+  },
+  "ambiguityLevel": {
+    "rating": 2,
+    "justification": "The context is somewhat ambiguous regarding the direct link between AoI and zero-downtime deployments as mentioned in the claim."
+  },
+  "meanScore": 2.33
+}
+
+How does trunk-based development compare to Git-flow in terms of release velocity and merge conflict risk?
+----------
+claim: Modern software systems are often built by large, distributed teams, and trunk-based development can facilitate more frequent and seamless integration of changes, which might contribute to higher release velocity.
+context: Early detection of merge conflicts, which warns developers about resolving conflicts before they become large and complicated, is among the ways of dealing with this problem. 
+Existing techniques do this by continuously pulling and merging all combinations of branches in the background to notify developers as soon as a conflict occurs, which is a computationally expensive process. 
+One potential way for reducing this cost is to use a machine-learning based conflict predictor that filters out the m...
+llmJudgement: 
+{
+  "faithfulness": {
+    "rating": 2,
+    "justification": "The claim discusses trunk-based development and its benefits, which is related to the context's mention of merge conflicts and branch management. However, the context does not directly discuss trunk-based development or release velocity."
+  },
+  "relevance": {
+    "rating": 2,
+    "justification": "The context talks about managing merge conflicts and branch combinations, which are related to the broader topic of software development practices mentioned in the claim. However, the context does not specifically address trunk-based development or release velocity."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict the information in the context. Both discuss aspects of software development and integration, maintaining logical consistency."
+  },
+  "supportCoverage": {
+    "rating": 1,
+    "justification": "The context does not provide information about trunk-based development or release velocity, which are key elements of the claim. Therefore, the context lacks sufficient information to fully support the claim."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context, though discussing different aspects of software development, convey related semantic entities and can be interpreted as part of the same broader topic without differing meanings."
+  },
+  "ambiguityLevel": {
+    "rating": 2,
+    "justification": "The context is somewhat ambiguous regarding the specific practices (like trunk-based development) and outcomes (like release velocity) mentioned in the claim, as it focuses more on conflict detection and resolution."
+  },
+  "meanScore": 2.2
+}
+
+----------
+claim:  Git-flow's structured approach can help maintain a more stable and predictable development process, potentially reducing the risk of key personnel leaving a project due to the reduced complexity and conflict in the codebase.
+context: Lastly, we compare the results of the two algorithms in accuracy, similarity in results, execution time, and trends in BF values over time. Introduction: If we look at our daily use of the Internet, we realize that 
+we are consumed with the use of software and applications. The development and maintenance of all these software projects are based on the knowledge held by its developers.
+llmJudgement: {
+  "faithfulness": {
+    "rating": 1,
+    "justification": "The claim about Git-flow and its impact on development process is not supported by the context which discusses software development and maintenance but does not mention Git-flow or its benefits."
+  },
+  "relevance": {
+    "rating": 1,
+    "justification": "The context does not discuss Git-flow or its structured approach, making it irrelevant to the claim."
+  },
+  "consistency": {
+    "rating": 3,
+    "justification": "The claim does not contradict the context, as the context does not provide any information that would contradict the claim about Git-flow."
+  },
+  "supportCoverage": {
+    "rating": 1,
+    "justification": "The context does not provide any information to support the claim about Git-flow's impact on development processes."
+  },
+  "paraphraseRobustness": {
+    "rating": 3,
+    "justification": "The claim and context, though unrelated, do not contain semantic entities that would suggest a different meaning if rephrased."
+  },
+  "ambiguityLevel": {
+    "rating": 3,
+    "justification": "The context does not introduce ambiguity regarding the claim, as it does not discuss Git-flow."
+  },
+  "meanScore": 1.8
+}
+
+PROBLEMS WITH RATING
+-----------------------------------
+-consistency:   "justification": "The context does not provide information that contradicts the claim, but it also does not support it." 
+  --> this should be rating 3 instead of 1, since it is not logically inconsistant
+-ambiguityLevel
+  --> same as consistency i guess?
+-----------------------------------
+
+PROMBLEMS WITH CONTEXT (CURRENT SQUAI)
+-----------------------------------
+-currently often the abstract is used as context
+-quotes mid sentence which makes it harder
+-weak citation prompt, does not follow instructions like adding quote brackets after each claim.
+  -inconsistent where:  Document [6] suggests that continuous integration and merging can lead to more frequent releases, which is a key benefit of trunk-based development [6].\n\nHowever, trunk-based development may increase the risk of merge conflicts due to the frequent integrati
+  --> at the beginning confuses the current algo because it only looks 150 characters before
+  -->useless long lists like [1,2,3,4,5,6,7,8] at the end
+
+-bad selection of the sentence it is trying to attribute
+-only 1 context from a paper, even if cited multiple times
+
+-cut off characters at the beginning and end of the paper text (may try to see if this fits into the context window as well)
+
+evaluate what is better - after every sentence or after each claim
+  -->after every sentence seems a bit often
+  -->claims could span multiple sentences
+
+-----------------------------------
+
+CHANGES FOR RATING
+-----------------------------------
+-might need to switch back to 1-5 to get more diversed ratings as they seem to be to close together
+
+-might need to judge a answer sentence in its context as well as they can refer to previous sentences
+  -This property is achieved through the design of encryption schemes....
+  --> not clear what "This property" is referencing so might be hard to judge
+-----------------------------------
+
+
+ideas for improvement
+quoting prompt: 
+-use different documents
+-try using only 1 source?
+-clearer input format (document seperated, id provided clearer)
+-add examples
+
+
+
+for LLM context retrievel - verify that the sentence is really in the paper
+only 1 reference?

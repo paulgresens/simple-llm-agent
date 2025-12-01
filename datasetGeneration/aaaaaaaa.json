@@ -1,0 +1,64 @@
+{
+  "topic overlaps": [
+    "Variation of fundamental constants",
+    "Nuclear magnetic moments and quark masses",
+    "Big Bang Nucleosynthesis (BBN) constraints",
+    "Oklo natural nuclear reactor data",
+    "Quasar absorption spectra",
+    "Hyperfine structure and atomic transitions",
+    "Relativistic corrections in atomic physics",
+    "Strangeness in hadronic and nuclear physics",
+    "Cosmological time variation of constants",
+    "Impact of quark mass variation on nuclear properties"
+  ],
+  "question": "How do variations in the strange quark mass affect the nuclear properties and resonance energies in the context of Big Bang Nucleosynthesis and the Oklo natural nuclear reactor, and what are the resulting constraints on the variation of the strange quark mass over cosmological timescales?",
+  "answer": "Variations in the strange quark mass can significantly impact nuclear properties and resonance energies, which are crucial for processes like Big Bang Nucleosynthesis (BBN) and the operation of the Oklo natural nuclear reactor. The strange quark mass influences the binding energies of nuclei and the positions of resonances, which are sensitive to the strong interaction scale. In the context of BBN, the variation of the strange quark mass can alter the production rates of light elements, particularly helium-3 and helium-4, by shifting the positions of key resonances. For the Oklo natural nuclear reactor, the variation of the strange quark mass can affect the neutron capture cross sections, which are critical for the reactor's operation. Constraints from BBN suggest that the relative change in the strange quark mass over the time since the Big Bang is limited to |δW/W| < 0.006, where W = m_s/Λ_QCD. Data from the Oklo reactor, which operated about 1.8 billion years ago, provide even tighter constraints, indicating that |δW/W| < 1.2 × 10^-10, with a non-zero solution of δW/W = (-0.56 ± 0.05) × 10^-9. These constraints highlight the stability of the strange quark mass over cosmological timescales.",
+  "usageJudgementGeneratorLLM": [
+    "nucl-th/0601050",
+    "hep-ph/0201303",
+    "hep-ph/0212403"
+  ],
+  "papersInputtedForGeneration": [
+    {
+      "ArXiv": "nucl-th/0601050",
+      "category": "nucl-th",
+      "cosineSimilarity": null
+    },
+    {
+      "ArXiv": "hep-ph/0201303",
+      "category": "hep-ph",
+      "cosineSimilarity": 0.8844037296275484
+    },
+    {
+      "ArXiv": "hep-ph/0205340",
+      "category": "hep-ph",
+      "cosineSimilarity": 0.848155537601775
+    },
+    {
+      "ArXiv": "physics/0305066",
+      "category": "physics.atom-ph",
+      "cosineSimilarity": 0.8787553831200665
+    },
+    {
+      "ArXiv": "hep-ph/0212403",
+      "category": "hep-ph",
+      "cosineSimilarity": 0.8832584962771759
+    }
+  ],
+  "anchorPaper": "nucl-th/0601050",
+  "adaptiveCharacterLimit": 25000,
+  "usageJudgeResult": [
+    { "ArXiv": "nucl-th/0601050", "wasUsed": false },
+    { "ArXiv": "hep-ph/0201303", "wasUsed": false },
+    { "ArXiv": "hep-ph/0205340", "wasUsed": false },
+    { "ArXiv": "physics/0305066", "wasUsed": false },
+    { "ArXiv": "hep-ph/0212403", "wasUsed": true }
+  ],
+  "paperTextLengths": [
+    { "ArXiv": "nucl-th/0601050", "textLength": 25050 },
+    { "ArXiv": "hep-ph/0201303", "textLength": 25050 },
+    { "ArXiv": "hep-ph/0205340", "textLength": 25050 },
+    { "ArXiv": "physics/0305066", "textLength": 25050 },
+    { "ArXiv": "hep-ph/0212403", "textLength": 25050 }
+  ]
+}

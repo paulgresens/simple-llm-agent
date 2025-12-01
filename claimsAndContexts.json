@@ -1,0 +1,75 @@
+[
+  {
+    "question": "How do modern compilers optimize memory access patterns to reduce cache misses?",
+    "claimsAndContexts": [
+      {
+        "claim": "Modern compilers optimize memory access patterns to reduce cache misses through various techniques, including cache prefetching and data layout optimizations .",
+        "context": "Modern processors use cache memory: a memory access that 'hits' the cache returns early, while a “miss” takes more time. Given a memory access in a program, cache analysis consists in deciding whether this access is always a hit, always a miss, or is a hit or a miss depending on execution. Such an analysis is of high importance for bounding the worst-case execution time of safety-critical real-time programs."
+      },
+      {
+        "claim": "Cache prefetching involves predicting future memory accesses and fetching data into the cache before it is actually required by the processor, thereby reducing cache misses.",
+        "context": "Cache prefetcher greatly eliminates compulsory cache misses, by fetching data from slower memory to faster cache before it is actually required by processors. Sophisticated prefetchers predict next use cache line by repeating program’s historical spatial and temporal memory access pattern. However, they are error prone and the mis-predictions lead to cache pollution and exert extra pressure on memory subsystem"
+      },
+      {
+        "claim": "Data layout optimizations, such as padding and alignment, are used to mitigate aliasing conflicts and improve cache utilization.",
+        "context": "Although such effects are well known in the form of cache thrashing and aliasing conflicts, they become more severe when memory access is involved. Using the new Sun UltraSPARC T2 processor as a prototypical multi-core design, we analyze performance patterns in low-level and application benchmarks and show ways to circumvent bottlenecks by careful data layout and padding. 1 The Sun UltraSPARC T2 processor Trading high single core performance for a highly parallel single chip architecture is the basic idea of T2 as can be seen in Fig."
+      }
+    ]
+  },
+  {
+    "question": "How does homomorphic encryption enable computation on encrypted data?",
+    "claimsAndContexts": [
+      {
+        "claim": "Homomorphic encryption enables computation on encrypted data by allowing operations to be performed on the ciphertexts such that, after decryption, the result is the same as if the operations had been performed on the plaintexts directly.",
+        "context": "Homomorphic encryption is an encryption method that enables computing over encrypted data. This has a wide range of real world ramifications such as being able to blindly compute a search result sent to a remote server without revealing its content. This paper discusses how database search queries can be made secure using a homomorphic encryption scheme."
+      },
+      {
+        "claim": "This property is achieved through the design of encryption schemes that support homomorphic operations, such as addition and multiplication, on the encrypted data.",
+        "context": " Here we show, via an information localisation argument, that deterministic fully homomorphic encryption necessarily incurs exponential overhead if perfect security is required. The insight that information must be represented and manipulated in accordance with physical laws has led to the blossoming field of quantum information science. The applications of this approach to information processing are diverse, and it has led to discoveries ranging from new algorithms and communications protocols which exploit quantum states for increased efficiency to techniques for enhancing the precision of metrology."
+      },
+      {
+        "claim": "These schemes have been shown to have significant implications for privacy-preserving applications, such as secure machine learning inference.",
+        "context": "Modern deep learning applications yield good performance for example in image processing tasks benchmarks by including many skip connections. The latter appears to be very costly when attempting to execute model inference under HE. In this paper, we show that by replacing (mid-term) skip connections with (short-term) Dirac parameterization and (long-term) shared-source skip connection we were able to reduce the skip connections burden for HE-based solutions, achieving ×1."
+      }
+    ]
+  },
+  {
+    "question": "How do microservice architectures reduce coupling compared to monolithic systems, and what trade-offs do they introduce in operational complexity?",
+    "claimsAndContexts": [
+      {
+        "claim": "Microservice architectures (MA) reduce coupling compared to monolithic systems by decomposing applications into smaller, loosely coupled services.",
+        "context": "However, little empirical evidence exists on design, monitoring, and testing of microservices systems. Objective: This research aims to gain a deep understanding of how microservices systems are designed, monitored, and tested in the industry. Method: A mixed-methods study was conducted with 106 survey responses and 6 interviews from microservices practitioners."
+      },
+      {
+        "claim": "Each microservice is designed to perform a specific business function, which minimizes dependencies between services and allows them to be developed, deployed, and scaled independently.",
+        "context": "We also devise an algorithm to reduce the number of APIs. For this, we construct subgraphs of methods and their associated variables in each class and relocate them to their more functionally aligned microservices. Our quantitative and qualitative studies on five public Java applications clearly demonstrate that our refactored microservices using ID have decidedly better time and memory complexities than JSON."
+      }
+    ]
+  },
+  {
+    "question": "What strategies ensure zero-downtime deployments in distributed applications with stateful components?",
+    "claimsAndContexts": [
+      {
+        "claim": "A novel approach for robotic system monitoring and stateful, reactive failure mitigation for distributed robotic systems deployed using Kubernetes (K8s) and ROS2 is proposed.",
+        "context": "In cloud-native applications deployed with the container management system Kubernetes (K8s), one key problem is ensuring resilience against various types of failures. However, complex robotic systems interacting with the physical world pose a very specific set of challenges and requirements that are not yet covered by failure mitigation approaches from the cloud-native domain. In this paper, we therefore propose a novel approach for robotic system monitoring and stateful, reactive failure mitiga..."
+      },
+      {
+        "claim": "The application of age of information (AoI) helps maintain network status information at an acceptable freshness level for appropriate decision-making, contributing to zero-downtime deployments.",
+        "context": "In addition, to train and test our DRL agents, we propose a novel impending-failure model. Moreover, to keep network status information at an acceptable freshness level for appropriate decision-making, we apply the concept of age of information to strike a balance between the event and scheduling based monitoring. Several key systems and DRL algorithm design insights for ZT-PFR are drawn from our analysis and simulation results."
+      }
+    ]
+  },
+  {
+    "question": "How does trunk-based development compare to Git-flow in terms of release velocity and merge conflict risk?",
+    "claimsAndContexts": [
+      {
+        "claim": "Modern software systems are often built by large, distributed teams, and trunk-based development can facilitate more frequent and seamless integration of changes, which might contribute to higher release velocity.",
+        "context": "Early detection of merge conflicts, which warns developers about resolving conflicts before they become large and complicated, is among the ways of dealing with this problem. Existing techniques do this by continuously pulling and merging all combinations of branches in the background to notify developers as soon as a conflict occurs, which is a computationally expensive process. One potential way for reducing this cost is to use a machine-learning based conflict predictor that filters out the m..."
+      },
+      {
+        "claim": " Git-flow's structured approach can help maintain a more stable and predictable development process, potentially reducing the risk of key personnel leaving a project due to the reduced complexity and conflict in the codebase.",
+        "context": "Lastly, we compare the results of the two algorithms in accuracy, similarity in results, execution time, and trends in BF values over time. Introduction: If we look at our daily use of the Internet, we realize that we are consumed with the use of software and applications. The development and maintenance of all these software projects are based on the knowledge held by its developers."
+      }
+    ]
+  }
+]

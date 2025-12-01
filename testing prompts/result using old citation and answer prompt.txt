@@ -1,0 +1,8 @@
+
+"question": "How do modern compilers optimize memory access patterns to reduce cache misses?",
+"answer": 
+"Modern compilers optimize memory access patterns to reduce cache misses through various techniques, including cache prefetching 
+and data layout optimizations [2]. Cache prefetching involves predicting future memory accesses and fetching data into the 
+cache before it is actually required by the processor, thereby reducing cache misses [2]. Data layout optimizations, 
+such as padding and alignment, help to avoid aliasing conflicts and improve cache utilization [3]. These methods are 
+crucial for enhancing performance in multi-core systems where memory access can become a bottleneck [3].",

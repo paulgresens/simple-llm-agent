@@ -1,0 +1,46 @@
+[
+  {
+    "question": "How do different discretization methods in Regge calculus, such as the Collins-Williams and subdivided models, handle the convergence of solutions to continuum general relativity, and what are the implications for modeling cosmological dynamics with varying levels of resolution?",
+    "answer": "The Collins-Williams (CW) Regge calculus models and their subdivided variants are designed to approximate FLRW cosmologies with varying degrees of resolution. Both models converge to the continuum solution at second order in the lattice spacing, as demonstrated through numerical simulations. However, subdivided models, while initially less accurate at small volumes, exhibit improved performance at larger volumes due to their higher resolution. This suggests that while coarser models may be sufficient for qualitative behavior, finer subdivisions offer a more robust approximation over time, especially as the universe expands. The convergence is validated through comparisons with exact FLRW solutions, where the models' expansion rates and volume evolution align qualitatively, although discrepancies emerge at large scales, indicating that finite resolution limits the models' ability to track continuum dynamics accurately over time.",
+    "papers": [
+      "gr-qc/0006017",
+      "gr-qc/9706034",
+      "1501.07614"
+    ]
+  },
+  {
+    "question": "What are the key differences between global and local variation methods in Regge calculus, and how do these methods impact the viability of Regge models in approximating cosmological dynamics, particularly in the context of symmetry and constraint satisfaction?",
+    "answer": "In Regge calculus, global variation imposes symmetry constraints (such as equal edge lengths) before varying the action, leading to a simplified set of equations where the Hamiltonian constraint is often a first integral of the evolution equation, ensuring consistency. In contrast, local variation treats edges independently, which can introduce unphysical constraints that break Copernican symmetries, making the model unviable. For example, in the CW formalism, local variation leads to momentum constraints that force the model to behave unphysically, whereas global variation preserves the symmetry and yields consistent, viable models. This highlights that global variation is more suitable for maintaining the physical structure of the model, especially in cosmological contexts where symmetry is crucial.",
+    "papers": [
+      "gr-qc/0006017",
+      "1501.07614"
+    ]
+  },
+  {
+    "question": "How does the averaging of geometric quantities in cosmological models, such as those in Regge calculus, affect the interpretation of observational data and the dynamics of the universe, particularly in relation to the backreaction of inhomogeneities and the role of gauge freedom?",
+    "answer": "Averaging in cosmological models introduces a distinction between the true physical dynamics and the apparent behavior as observed in a simplified, homogeneous framework. In Regge calculus, averaging over inhomogeneities leads to extra terms in the evolution equations that can mimic dark energy or dark matter effects, suggesting that backreaction might explain apparent acceleration. The gauge freedom inherent in Regge models—manifested as diffeomorphism invariance—allows for multiple representations of the same physical state, which can influence how observational data is interpreted. This implies that the choice of averaging scale and gauge conditions can significantly affect the inferred cosmological parameters, such as the expansion rate or matter density, and that the true dynamics may be more complex than what is captured by standard Friedmannian models.",
+    "papers": [
+      "gr-qc/0506106",
+      "gr-qc/0006017",
+      "1501.07614"
+    ]
+  },
+  {
+    "question": "What role does the spin foam approach play in addressing the conceptual and technical challenges of quantizing gravity, particularly in reconciling background independence with the need for a consistent dynamical framework, and how does it compare to other discretization methods like Regge calculus?",
+    "answer": "The spin foam approach to quantum gravity provides a covariant, background-independent framework for quantizing gravity by formulating the theory as a path integral over discrete geometries, which are represented as spin foams. This approach addresses the challenge of defining quantum dynamics without a fixed background by allowing the geometry to evolve as a sum over histories, similar to Regge calculus but with a more refined combinatorial structure. Unlike Regge calculus, which discretizes spacetime into simplices, spin foams encode the dynamics through the propagation of quantum geometries, which can be interpreted as discrete spacetime histories. This approach has been instrumental in exploring the implications of background independence and has been shown to be consistent with the constraints of general relativity in the continuum limit. While Regge calculus provides a discrete approximation to the Einstein equations, spin foams offer a more fundamental, path-integral-based formulation that can be used to investigate the quantum nature of spacetime and its implications for cosmology and black hole physics.",
+    "papers": [
+      "1205.2019",
+      "gr-qc/0006017",
+      "gr-qc/9706034"
+    ]
+  },
+  {
+    "question": "In what ways do the Regge calculus models of closed vacuum Λ-FLRW universes demonstrate the limitations of discrete approximations in cosmology, and how do these limitations manifest in the models' ability to reproduce the expansion dynamics of the continuum solution over time?",
+    "answer": "The Regge calculus models of closed vacuum Λ-FLRW universes, including both parent and subdivided variants, demonstrate that while they can reproduce the qualitative dynamics of the continuum solution, they ultimately fail to keep up with the expansion rate over time. This failure is attributed to the finite resolution of the discrete Cauchy surfaces, which become less accurate as the universe expands. The models exhibit a divergence from the FLRW solution, with the discrepancy increasing over time, particularly for coarser models. Although increasing the number of tetrahedra improves the approximation, the models still terminate abruptly when the strut lengths become null, indicating a limitation in their ability to model an ever-expanding spacetime. This suggests that while Regge calculus is a powerful tool for approximating cosmological dynamics, its discrete nature imposes fundamental limits on its ability to accurately model the long-term evolution of the universe, especially in the presence of a cosmological constant.",
+    "papers": [
+      "1501.07614",
+      "gr-qc/9706034",
+      "gr-qc/0006017"
+    ]
+  }
+]
