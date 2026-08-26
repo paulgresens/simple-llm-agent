@@ -7,6 +7,8 @@ require("dotenv").config();
 const INPUT_FILE = "evaluationResultCombined.jsonl";
 // ---------------------
 
+const isMissing = (v) => v === null || v === undefined;
+
 async function processLineByLine() {
   const allQuestions = [];
   const questionsReadStream = fs.createReadStream(INPUT_FILE);
@@ -51,6 +53,40 @@ async function processLineByLine() {
     "entailmentPercentage",
     //-----------
   ];
+  const judgementsOnQuestionLevel = [
+    "withoutGoldAnswerCorrectness",
+    "withoutGoldAnswerRelevancy",
+    "withGoldAnswerCorrectness",
+    "withGoldAnswerRelevancy",
+  ];
+  const metricsOnQuestionLevel = Object.fromEntries(
+    judgementsOnQuestionLevel.map((key) => [key, 0]),
+  );
+
+  const durationKeys = [
+    "answerGeneration",
+    "referencesNativeDuration",
+    "referencesBiencoderTop1Duration",
+    "referencesBM25Top1Duration",
+    "referencesBiencoderTop10Bm25Top1Duration",
+    "referencesBM25Top10BiencoderTop1Duration",
+    "referencesBiencoderTop10CrossEncoderTop1Duration",
+    "referencesBM25Top10CrossEncoderTop1Duration",
+    "referencesBiencoderAndBm25Top1Duration",
+    "referencesBiencoderAndBm25Top10CrossEncoderTop1Duration",
+    "referencesWithLLMDuration",
+  ];
+
+  const errorsAtTheseQuestions = {};
+
+  const duration = {
+    withoutGold: Object.fromEntries(durationKeys.map((key) => [key, 0])),
+    withGold: Object.fromEntries(durationKeys.map((key) => [key, 0])),
+  };
+
+  //referencesWithLLMSeeIfHallucination
+  let partialRatioWithSourceTextWithoutGold = 0;
+  let partialRatioWithSourceTextWithGold = 0;
 
   //this collects for the whole question and is later calculating percentage score
   const spansWithoutGoldSummedUp = Object.fromEntries(
@@ -69,6 +105,53 @@ async function processLineByLine() {
   for (const question of allQuestions) {
     const referencesWithoutGold = question["withoutGold"];
     const referencesWithGold = question["withGold"];
+
+    //evaluating on question - answer level
+    metricsOnQuestionLevel["withoutGoldAnswerCorrectness"] +=
+      question["quoteJudgement"]["withoutGold"]["answerCorrectness"]["result"];
+    metricsOnQuestionLevel["withoutGoldAnswerRelevancy"] +=
+      question["quoteJudgement"]["withoutGold"]["answerRelevancy"]["result"];
+    metricsOnQuestionLevel["withGoldAnswerCorrectness"] +=
+      question["quoteJudgement"]["withGold"]["answerCorrectness"]["result"];
+    metricsOnQuestionLevel["withGoldAnswerRelevancy"] +=
+      question["quoteJudgement"]["withGold"]["answerRelevancy"]["result"];
+
+    const errorsAtThisQuestion = {};
+
+    if (
+      isMissing(
+        question["quoteJudgement"]["withoutGold"]["answerCorrectness"][
+          "result"
+        ],
+      )
+    ) {
+      errorsAtThisQuestion["answerCorrectness"] =
+        (errorsAtThisQuestion["answerCorrectness"] ?? 0) + 1;
+    }
+    if (
+      isMissing(
+        question["quoteJudgement"]["withoutGold"]["answerRelevancy"]["result"],
+      )
+    ) {
+      errorsAtThisQuestion["answerRelevancy"] =
+        (errorsAtThisQuestion["answerRelevancy"] ?? 0) + 1;
+    }
+    if (
+      isMissing(
+        question["quoteJudgement"]["withGold"]["answerCorrectness"]["result"],
+      )
+    ) {
+      errorsAtThisQuestion["answerCorrectness"] =
+        (errorsAtThisQuestion["answerCorrectness"] ?? 0) + 1;
+    }
+    if (
+      isMissing(
+        question["quoteJudgement"]["withGold"]["answerRelevancy"]["result"],
+      )
+    ) {
+      errorsAtThisQuestion["answerRelevancy"] =
+        (errorsAtThisQuestion["answerRelevancy"] ?? 0) + 1;
+    }
 
     referencesKeys.forEach((key) => {
       let referencesAtThisKeyWithoutGold = Object.values(
@@ -96,6 +179,21 @@ async function processLineByLine() {
             })),
         );
       }
+
+      // sum up partial ratios for the generative LLM extracted spans
+      if (key == "referencesWithLLM") {
+        partialRatioWithSourceTextWithoutGold +=
+          referencesAtThisKeyWithoutGold
+            .map((r) => r.hallucinationCheck.partialRatioWithSourceText)
+            .reduce((total, n) => total + n, 0) /
+          referencesAtThisKeyWithoutGold.length;
+
+        partialRatioWithSourceTextWithGold +=
+          referencesAtThisKeyWithGold
+            .map((r) => r.hallucinationCheck.partialRatioWithSourceText)
+            .reduce((total, n) => total + n, 0) /
+          referencesAtThisKeyWithGold.length;
+      }
       // end of flattening
 
       //collecting the judgement sentence level  - without gold
@@ -121,6 +219,31 @@ async function processLineByLine() {
         referencesAtThisKeyWithoutGoldSummedUp[
           entailmentLabel + "Percentage"
         ] += 1;
+
+        if (isMissing(r["judgement"]["faithfulness"]["result"])) {
+          errorsAtThisQuestion["faithfulness"] =
+            (errorsAtThisQuestion["faithfulness"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["contextRelevance"]["result"])) {
+          errorsAtThisQuestion["contextRelevance"] =
+            (errorsAtThisQuestion["contextRelevance"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["entailment"]["contradiction"])) {
+          errorsAtThisQuestion["contradiction"] =
+            (errorsAtThisQuestion["contradiction"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["entailment"]["neutral"])) {
+          errorsAtThisQuestion["neutral"] =
+            (errorsAtThisQuestion["neutral"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["entailment"]["entailment"])) {
+          errorsAtThisQuestion["entailment"] =
+            (errorsAtThisQuestion["entailment"] ?? 0) + 1;
+        }
+        if (!entailmentLabel) {
+          errorsAtThisQuestion["entailmentLabel"] =
+            (errorsAtThisQuestion["entailmentLabel"] ?? 0) + 1;
+        }
       });
 
       Object.keys(referencesAtThisKeyWithoutGoldSummedUp).forEach(
@@ -155,6 +278,31 @@ async function processLineByLine() {
         const entailmentLabel = r["judgement"]["entailment"]["label"];
         referencesAtThisKeyWithGoldSummedUp[entailmentLabel + "Percentage"] +=
           1;
+
+        if (isMissing(r["judgement"]["faithfulness"]["result"])) {
+          errorsAtThisQuestion["faithfulness"] =
+            (errorsAtThisQuestion["faithfulness"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["contextRelevance"]["result"])) {
+          errorsAtThisQuestion["contextRelevance"] =
+            (errorsAtThisQuestion["contextRelevance"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["entailment"]["contradiction"])) {
+          errorsAtThisQuestion["contradiction"] =
+            (errorsAtThisQuestion["contradiction"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["entailment"]["neutral"])) {
+          errorsAtThisQuestion["neutral"] =
+            (errorsAtThisQuestion["neutral"] ?? 0) + 1;
+        }
+        if (isMissing(r["judgement"]["entailment"]["entailment"])) {
+          errorsAtThisQuestion["entailment"] =
+            (errorsAtThisQuestion["entailment"] ?? 0) + 1;
+        }
+        if (!entailmentLabel) {
+          errorsAtThisQuestion["entailmentLabel"] =
+            (errorsAtThisQuestion["entailmentLabel"] ?? 0) + 1;
+        }
       });
 
       Object.keys(referencesAtThisKeyWithGoldSummedUp).forEach(
@@ -166,6 +314,18 @@ async function processLineByLine() {
         },
       );
     });
+
+    durationKeys.forEach((key) => {
+      duration["withoutGold"][key] +=
+        question["answerMeta"]["duration"]["withoutGold"][key];
+      duration["withGold"][key] +=
+        question["answerMeta"]["duration"]["withGold"][key];
+    });
+
+    if (Object.keys(errorsAtThisQuestion).length > 0) {
+      errorsAtTheseQuestions[question["generationMeta"]["anchorPaper"]] =
+        errorsAtThisQuestion;
+    }
   }
 
   console.log("############ WITHOUT GOLD ##############");
@@ -186,6 +346,42 @@ async function processLineByLine() {
     });
   });
   console.log(JSON.stringify(spansWithGoldSummedUp, null, 2));
+
+  console.log("############ QUESTION LEVEL METRICS ##############");
+
+  //metrics on question level - obtain percentage measure
+  Object.keys(metricsOnQuestionLevel).forEach((key) => {
+    metricsOnQuestionLevel[key] /= allQuestions.length;
+  });
+  console.log(JSON.stringify(metricsOnQuestionLevel, null, 2));
+
+  //duration
+  console.log("############ DURATION ############");
+  Object.keys(duration["withoutGold"]).forEach((key) => {
+    duration["withoutGold"][key] /= allQuestions.length;
+  });
+  Object.keys(duration["withGold"]).forEach((key) => {
+    duration["withGold"][key] /= allQuestions.length;
+  });
+  console.log(JSON.stringify(duration, null, 2));
+
+  //hallucination check
+  partialRatioWithSourceTextWithoutGold =
+    partialRatioWithSourceTextWithoutGold / allQuestions.length;
+  partialRatioWithSourceTextWithGold =
+    partialRatioWithSourceTextWithGold / allQuestions.length;
+
+  console.log("############ HALLUCINATION CHECK ############");
+  console.log(
+    "partialRatioWithSourceTextWithoutGold: " +
+      partialRatioWithSourceTextWithoutGold,
+  );
+  console.log(
+    "partialRatioWithSourceTextWithGold: " + partialRatioWithSourceTextWithGold,
+  );
+
+  console.log("############ ERRORS ############");
+  console.log(JSON.stringify(errorsAtTheseQuestions));
 }
 
 processLineByLine();
